@@ -7,13 +7,7 @@
     >
       <!-- 复选框:点击更新状态 -->
       <div class="form-check">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          :id="item.id"
-          :checked="item.completed"
-          @change="handleToggle(item.id)"
-        />
+        <input class="form-check-input" type="checkbox" :id="item.id" v-model="item.completed" />
         <label
           class="form-check-label"
           :for="item.id"
@@ -36,15 +30,6 @@ const props = defineProps({
     required: true,
   },
 })
-
-const emit = defineEmits(['update:completed'])
-
-const handleToggle = (id) => {
-  const task = todoList.value.find((item) => item.id === id)
-  if (task) {
-    emit('update:completed', id, !task.completed)
-  }
-}
 </script>
 
 <style scoped>
