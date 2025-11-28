@@ -17,8 +17,11 @@
         </label>
       </div>
 
-      <span class="badge bg-success badge-pill" v-if="item.completed"> 已完成 </span>
-      <span class="badge bg-warning badge-pill" v-else> 未完成 </span>
+      <div class="task-actions">
+        <span class="badge bg-success badge-pill" v-if="item.completed"> 已完成 </span>
+        <span class="badge bg-warning badge-pill" v-else> 未完成 </span>
+        <button class="delete-btn" @click="handleDelete(item.id)">删除</button>
+      </div>
     </li>
   </ul>
 </template>
@@ -30,6 +33,10 @@ const props = defineProps({
     required: true,
   },
 })
+const emit = defineEmits(['delete-task'])
+const handleDelete = (id) => {
+  emit('delete-task', id)
+}
 </script>
 
 <style scoped>
@@ -39,5 +46,20 @@ const props = defineProps({
 }
 .text-decoration-line-through {
   color: #737a80;
+}
+.task-actions {
+  display: flex;
+  align-items: center;
+}
+.delete-btn {
+  background-color: #ab3a3c;
+  color: white;
+  border: none;
+  font-size: 0.7rem;
+  padding: 2px 5px;
+  border-radius: 5px;
+}
+.delete-btn:hover {
+  background-color: #8f1e2a;
 }
 </style>

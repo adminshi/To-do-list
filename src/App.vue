@@ -29,6 +29,10 @@ const addNewTask = (newTask) => {
 const clearAllTasks = () => {
   todos.value = []
 }
+
+const deleteTask = (id) => {
+  todos.value = todos.value.filter((item) => item.id !== id)
+}
 </script>
 
 <template>
@@ -37,7 +41,7 @@ const clearAllTasks = () => {
       <h3>本周待办事项列表</h3>
     </div>
     <todoInput @add-task="addNewTask"></todoInput>
-    <todolist :todolist="filteredTodos"> </todolist>
+    <todolist :todolist="filteredTodos" @delete-task="deleteTask"> </todolist>
     <todoButton @filter-type="filterType = $event"></todoButton>
     <clearButton :has-tasks="todos.length > 0" @clear-all="clearAllTasks"> </clearButton>
   </div>
