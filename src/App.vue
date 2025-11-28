@@ -2,6 +2,7 @@
 import { computed, ref } from 'vue'
 import Todolist from './components/todolist.vue'
 import TodoButton from './components/todoButton.vue'
+import TodoInput from './components/todoInput.vue'
 
 const todos = ref([
   { id: 1, text: '学习', completed: false },
@@ -19,10 +20,15 @@ const filteredTodos = computed(() => {
     return todos.value.filter((item) => !item.completed)
   }
 })
+
+const addNewTask = (newTask) => {
+  todos.value.push(newTask)
+}
 </script>
 
 <template>
   <div id="todo-list-app">
+    <todoInput @add-task="addNewTask"></todoInput>
     <todolist :todolist="filteredTodos"> </todolist>
     <todoButton @filter-type="filterType = $event"></todoButton>
   </div>
