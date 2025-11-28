@@ -6,13 +6,13 @@
     <input
       type="text"
       class="form-control"
-      placeholder="输入任务"
+      placeholder="请输入待办事项"
       aria-label="Username"
       aria-describedby="basic-addon1"
       v-model="newTask"
       @keyup.enter="onSubmit"
     />
-    <button class="btn-primary" @click="onSubmit">提交</button>
+    <button class="btn-primary" @click="onSubmit">添加</button>
   </div>
 </template>
 
